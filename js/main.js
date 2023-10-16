@@ -32,7 +32,7 @@ function call_data(v) {
 		v = "";
 	}
 
-	$.post(
+/* 	$.post(
 		"https://ashiralol.github.io/datalist.html",	
 		{
 			filter: v,
@@ -44,7 +44,7 @@ function call_data(v) {
 			load_list();				
 		},
 		"html"
-	);
+	); */
 
 /* 	postData("datalist.html", {  }).then((data) => {
 		$("#box_content").html(data);
