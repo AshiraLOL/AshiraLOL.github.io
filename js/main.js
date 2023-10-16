@@ -33,7 +33,7 @@ function call_data(v) {
 	}
 
 	$.post(
-		"datalist.html",	
+		"https://ashiralol.github.io/datalist.html",	
 		{
 			filter: v,
 			offset: page,
