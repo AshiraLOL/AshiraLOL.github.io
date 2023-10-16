@@ -32,8 +32,8 @@ function call_data(v) {
 		v = "";
 	}
 
-/* 	$.post(
-		"datagen.php",	
+	$.post(
+		"datalist.html",	
 		{
 			filter: v,
 			offset: page,
@@ -44,12 +44,12 @@ function call_data(v) {
 			load_list();				
 		},
 		"html"
-	); */
+	);
 
-	postData("datalist.html", {  }).then((data) => {
+/* 	postData("datalist.html", {  }).then((data) => {
 		$("#box_content").html(data);
 		load_list();		
-});
+}); */
 
 }
 
