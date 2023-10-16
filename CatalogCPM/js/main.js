@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	check_mobile();
+	load_list();
 });
 
 function check_mobile() {
