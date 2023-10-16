@@ -46,7 +46,7 @@ function call_data(v) {
 		"html"
 	); */
 
-	postData("datalist.php", {  }).then((data) => {
+	postData("datalist.html", {  }).then((data) => {
 		$("#box_content").html(data);
 		load_list();		
 });
