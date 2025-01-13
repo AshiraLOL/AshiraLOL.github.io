@@ -1,9 +1,153 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Tapspace</title>
+
+  <script defer src="https://unpkg.com/tapspace@2.0.0-alpha.4/dist/tapspace.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #mytapspace {
+      width: 100%;
+      height: 100vh;
+      border: 1px solid #ccc;
+    }
+
+    .box1 {
+      color: rgb(200, 195, 188);
+      background-image: initial;
+      background-color: rgb(52, 56, 58);
+      width: max-content;
+      display: inline-block;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    #clone {
+      display: none;
+    }
+
+    .test {
+      width: 300px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+
+    #test div {
+      background: rgb(143, 114, 75);
+      padding: 10px;
+      margin: 5px;     
+    }
+  </style>
+
+</head>
 
 <body>
-    TEST 123456
+
+  <div id="clone">
+    <div id="test" class="test">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>     
+
+    </div>
+
+
+  </div>
+
+  <div id="mytapspace"></div>
+
+
+
+
+
 </body>
 
-
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Create the viewport
+    const viewport = tapspace.createViewport('#mytapspace');
+
+    // Create a space
+    const space = tapspace.createSpace();
+
+    // Add the space to the viewport
+    viewport.addChild(space);
+
+
+    const originalElement = document.getElementById('clone');
+    const childElement = originalElement.querySelector('#test');
+    originalElement.removeChild(childElement);
+
+
+   
+
+
+    for (let i = 0; i < 1000; i++) {
+      // Clone the child element for each item
+      const clonedElement = childElement.cloneNode(true);
+
+      // Create a Tapspace item using the cloned element
+      const hello = tapspace.createItem(clonedElement);
+
+      // Calculate a position for each item (spreading them out)
+      const position = space.at(i * 1000, 0); // Adjust spacing as needed
+
+      // Add the item to the space at the calculated position
+      space.addChild(hello, position);
+
+      // Set size and anchor
+      hello.setSize({
+        w: 0,
+        h: 0
+      });
+      hello.setAnchor({
+        x: 0,
+        y: 0
+      });
+
+      // Optionally make the items draggable
+      hello.draggable();
+
+    }
+
+
+    /*    viewport.translateTo(hello.atCenter()) */
+
+    /*  hello.translateBy({ x: 10, y: -20, z: 5 }); */
+
+    /*       const deg45 = Math.PI / 4
+          hello.rotateBy(deg45) */
+
+    /*       const deg45 = Math.PI / 4
+          hello.rotateBy(deg45, hello.atTopRight()) */
+
+    /*       hello.draggable();
+          
+
+    hello.on('gestureend', function () {
+      hello.html('You dragged me!')  
+    })
+    hello.setContentInput(false); */
+
+    viewport.zoomable().perspective();
+
+  });
+</script>
